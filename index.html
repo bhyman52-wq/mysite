@@ -1,147 +1,204 @@
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>p {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 1.1rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>max-width: 600px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin: 10px auto;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>#stopwatch {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 1.2rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-top: 20px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: rgba(0,0,0,0.4);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 15px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 10px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display: inline-block;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>footer {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background-color: rgba(0, 0, 0, 0.3);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 15px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-top: 40px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 0.9rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
-<p class="p1"><span class="s1">&lt;body&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;header&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;h1&gt;Braden's Conspiracy&lt;/h1&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;nav&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;button onclick="showHome()"&gt;Home&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;button onclick="showFish()"&gt;Fish&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;button onclick="showShark()"&gt;Shark&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;button onclick="showLobster()"&gt;Lobster&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;button onclick="showBecky()"&gt;Becky&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;button onclick="showDino()"&gt;Dinosaurs&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/nav&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/header&gt;</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">  </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;main id="content"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;h2&gt;Welcome Home&lt;/h2&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6P-hGtrQSe7WzUDzRr9sr6OqSNpSgfnZTVg&amp;s"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;p&gt;This is the homepage. Use the buttons above to explore.&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/main&gt;</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">  </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;footer&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;p&gt;Made with ❤️ for curious minds&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/footer&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;script&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>function showHome() {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>document.getElementById('content').innerHTML = `</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;h2&gt;Welcome Home&lt;/h2&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6P-hGtrQSe7WzUDzRr9sr6OqSNpSgfnZTVg&amp;s"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;p&gt;This is the homepage. Use the buttons above to explore.&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>`;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>function showFish() {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>document.getElementById('content').innerHTML = `</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;h2&gt;Welcome to the Fish Page&lt;/h2&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSclb118rw3tVZ1Os4p1OSil0CDm5FYeXvMzg&amp;s" alt="Fish"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;p&gt;Clownfish live in anemones and are known for their symbiotic relationship with them.&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;p&gt;They are found in warm waters of the Pacific and Indian Oceans.&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>`;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>function showShark() {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>document.getElementById('content').innerHTML = `</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;h2&gt;Welcome to the Shark Page&lt;/h2&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;img src="https://upload.wikimedia.org/wikipedia/commons/5/56/White_shark.jpg" alt="Shark"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;p&gt;Sharks have been around for over 400 million years, even before trees existed.&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;p&gt;The great white shark is one of the ocean’s top predators.&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>`;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>function showLobster() {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>document.getElementById('content').innerHTML = `</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;h2&gt;Welcome to the Lobster Page&lt;/h2&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzberUz2eciy1oDiY0YrmOFISab7Buz8VyQA&amp;s" alt="Lobster"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;p&gt;Lobsters can live up to 100 years in the wild.&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;p&gt;They have blue blood due to the presence of copper in their hemocyanin.&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>`;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>function showBecky() {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>document.getElementById('content').innerHTML = `</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;h2&gt;Welcome to Becky’s Page&lt;/h2&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;img src="https://media.licdn.com/dms/image/v2/C4D03AQFDPmBdyw6vqg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1569969167554?e=1760572800&amp;v=beta&amp;t=T4FvFUygr5-b07ZqTrhXG4aA4PpXbWtRD7MLqsdSDLA" alt="Becky"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;p&gt;Old. Likes Panera Bread&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div id="stopwatch"&gt;&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>`;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>startStopwatch();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>// Stopwatch logic</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>function startStopwatch() {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const birthDate = new Date('1996-06-06T14:04:00'); // local time, not UTC<span class="Apple-converted-space"> </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>setInterval(() =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const now = new Date();</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>let years = now.getFullYear() - birthDate.getFullYear();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>let months = now.getMonth() - birthDate.getMonth();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>let days = now.getDate() - birthDate.getDate();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>let hours = now.getHours() - birthDate.getHours();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>let minutes = now.getMinutes() - birthDate.getMinutes();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>let seconds = now.getSeconds() - birthDate.getSeconds();</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>// Adjust negatives for proper age calculation</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if (seconds &lt; 0) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>seconds += 60;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>minutes--;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if (minutes &lt; 0) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>minutes += 60;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>hours--;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if (hours &lt; 0) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>hours += 24;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>days--;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if (days &lt; 0) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// days in previous month</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0).getDate();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>days += prevMonth;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>months--;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if (months &lt; 0) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>months += 12;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>years--;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>document.getElementById('stopwatch').innerText =</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>years + " years, " +</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>months + " months, " +</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>days + " days, " +</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>hours + " hours, " +</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>minutes + " minutes, " +</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>seconds + " seconds old.";</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}, 1000);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>function showDino() {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>document.getElementById('content').innerHTML = `</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;h2&gt;Proof Dinosaurs Are Real&lt;/h2&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;img src="https://images.template.net/476822/Cartoon-Dinosaur-Clipart-edit-online.png" alt="Dinosaur"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;p&gt;Dinosaurs may be extinct, but their relatives still roam the earth as birds today.&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>`;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
-<p class="p1"><span class="s1">&lt;/script&gt;</span></p>
-</body>
-</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sea Life Landing Page</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #6dd5ed, #2193b0);
+      color: #fff;
+      text-align: center;
+    }
+    header {
+      background-color: rgba(0, 0, 0, 0.3);
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    nav {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    nav button {
+      background-color: #fff;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s, color 0.3s;
+    }
+    nav button:hover {
+      background-color: #2193b0;
+      color: #fff;
+    }
+    main {
+      padding: 40px 20px;
+    }
+    main h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    img {
+      max-width: 400px;
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 10px auto;
+    }
+    #stopwatch {
+      font-size: 1.2rem;
+      margin-top: 20px;
+      background: rgba(0,0,0,0.4);
+      padding: 15px;
+      border-radius: 10px;
+      display: inline-block;
+    }
+    footer {
+      background-color: rgba(0, 0, 0, 0.3);
+      padding: 15px;
+      margin-top: 40px;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Braden's Conspiracy</h1>
+    <nav>
+      <button onclick="showHome()">Home</button>
+      <button onclick="showFish()">Fish</button>
+      <button onclick="showShark()">Shark</button>
+      <button onclick="showLobster()">Lobster</button>
+      <button onclick="showBecky()">Becky</button>
+      <button onclick="showDino()">Dinosaurs</button>
+    </nav>
+  </header>
+  
+  <main id="content">
+    <h2>Welcome Home</h2>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6P-hGtrQSe7WzUDzRr9sr6OqSNpSgfnZTVg&s">
+    <p>This is the homepage. Use the buttons above to explore.</p>
+  </main>
+  
+  <footer>
+    <p>Made with ❤️ for curious minds</p>
+  </footer>
+
+  <script>
+  function showHome() {
+    document.getElementById('content').innerHTML = `
+      <h2>Welcome Home</h2>
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6P-hGtrQSe7WzUDzRr9sr6OqSNpSgfnZTVg&s">
+      <p>This is the homepage. Use the buttons above to explore.</p>
+    `;
+  }
+
+  function showFish() {
+    document.getElementById('content').innerHTML = `
+      <h2>Welcome to the Fish Page</h2>
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSclb118rw3tVZ1Os4p1OSil0CDm5FYeXvMzg&s" alt="Fish">
+      <p>Clownfish live in anemones and are known for their symbiotic relationship with them.</p>
+      <p>They are found in warm waters of the Pacific and Indian Oceans.</p>
+    `;
+  }
+
+  function showShark() {
+    document.getElementById('content').innerHTML = `
+      <h2>Welcome to the Shark Page</h2>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/White_shark.jpg" alt="Shark">
+      <p>Sharks have been around for over 400 million years, even before trees existed.</p>
+      <p>The great white shark is one of the ocean’s top predators.</p>
+    `;
+  }
+
+  function showLobster() {
+    document.getElementById('content').innerHTML = `
+      <h2>Welcome to the Lobster Page</h2>
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzberUz2eciy1oDiY0YrmOFISab7Buz8VyQA&s" alt="Lobster">
+      <p>Lobsters can live up to 100 years in the wild.</p>
+      <p>They have blue blood due to the presence of copper in their hemocyanin.</p>
+    `;
+  }
+
+  function showBecky() {
+    document.getElementById('content').innerHTML = `
+      <h2>Welcome to Becky’s Page</h2>
+      <img src="https://media.licdn.com/dms/image/v2/C4D03AQFDPmBdyw6vqg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1569969167554?e=1760572800&v=beta&t=T4FvFUygr5-b07ZqTrhXG4aA4PpXbWtRD7MLqsdSDLA" alt="Becky">
+      <p>Old. Likes Panera Bread</p>
+      <div id="stopwatch"></div>
+    `;
+    startStopwatch();
+  }
+
+  // Stopwatch logic
+  function startStopwatch() {
+    const birthDate = new Date('1996-06-06T14:04:00'); // local time, not UTC 
+    setInterval(() => {
+      const now = new Date();
+
+      let years = now.getFullYear() - birthDate.getFullYear();
+      let months = now.getMonth() - birthDate.getMonth();
+      let days = now.getDate() - birthDate.getDate();
+      let hours = now.getHours() - birthDate.getHours();
+      let minutes = now.getMinutes() - birthDate.getMinutes();
+      let seconds = now.getSeconds() - birthDate.getSeconds();
+
+      // Adjust negatives for proper age calculation
+      if (seconds < 0) {
+        seconds += 60;
+        minutes--;
+      }
+      if (minutes < 0) {
+        minutes += 60;
+        hours--;
+      }
+      if (hours < 0) {
+        hours += 24;
+        days--;
+      }
+      if (days < 0) {
+        // days in previous month
+        const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+        days += prevMonth;
+        months--;
+      }
+      if (months < 0) {
+        months += 12;
+        years--;
+      }
+
+      document.getElementById('stopwatch').innerText =
+        years + " years, " +
+        months + " months, " +
+        days + " days, " +
+        hours + " hours, " +
+        minutes + " minutes, " +
+        seconds + " seconds old.";
+    }, 1000);
+  }
+
+  function showDino() {
+    document.getElementById('content').innerHTML = `
+      <h2>Proof Dinosaurs Are Real</h2>
+      <img src="https://images.template.net/476822/Cartoon-Dinosaur-Clipart-edit-online.png" alt="Dinosaur">
+      <p>Dinosaurs may be extinct, but their relatives still roam the earth as birds today.</p>
+    `;
+  }
+</script>
+
