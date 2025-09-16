@@ -57,6 +57,9 @@
       padding: 40px 20px;
       display: flex;
       justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
     }
 
     .card {
@@ -111,6 +114,16 @@
       from { opacity: 0; transform: translateY(15px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+    .rsvp-card {
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .rsvp-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.2);
+    }
   </style>
 </head>
 <body>
@@ -134,6 +147,14 @@
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6P-hGtrQSe7WzUDzRr9sr6OqSNpSgfnZTVg&s">
       <p>This is the homepage. Use the buttons above to explore.</p>
     </div>
+
+    <!-- RSVP for Softball Section -->
+    <a href="https://web.gc.com/teams/i0ZmKWEfWcVh/2025-fall-saasholes" target="_blank" style="text-decoration: none; color: inherit;">
+      <div class="card rsvp-card">
+        <img src="https://previews.123rf.com/images/chromaco/chromaco1204/chromaco120400013/13092107-cartoon-fastpitch-softball-with-screaming-face.jpg" alt="Softball RSVP">
+        <h2>Looking to RSVP for Softball? Click here!</h2>
+      </div>
+    </a>
   </main>
   
   <footer>
