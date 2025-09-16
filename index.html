@@ -57,16 +57,24 @@
       padding: 40px 20px;
       display: flex;
       justify-content: center;
-      flex-direction: column;
-      align-items: center;
+    }
+
+    .card-container {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
       gap: 30px;
+      flex-wrap: wrap;
+      width: 100%;
+      max-width: 900px;
     }
 
     .card {
       background: #fff;
       border-radius: 16px;
       padding: 30px;
-      max-width: 600px;
+      flex: 1 1 300px;
+      max-width: 400px;
       text-align: center;
       box-shadow: 0 8px 20px rgba(0,0,0,0.15);
       animation: fadeIn 0.4s ease;
@@ -74,7 +82,7 @@
 
     .card h2 {
       margin-bottom: 15px;
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       color: #2193b0;
     }
 
@@ -142,19 +150,21 @@
   </header>
   
   <main id="content">
-    <div class="card">
-      <h2>Welcome Home</h2>
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6P-hGtrQSe7WzUDzRr9sr6OqSNpSgfnZTVg&s">
-      <p>This is the homepage. Use the buttons above to explore.</p>
-    </div>
-
-    <!-- RSVP for Softball Section -->
-    <a href="https://web.gc.com/teams/i0ZmKWEfWcVh/2025-fall-saasholes" target="_blank" style="text-decoration: none; color: inherit;">
-      <div class="card rsvp-card">
-        <img src="https://previews.123rf.com/images/chromaco/chromaco1204/chromaco120400013/13092107-cartoon-fastpitch-softball-with-screaming-face.jpg" alt="Softball RSVP">
-        <h2>Looking to RSVP for Softball? Click here!</h2>
+    <div class="card-container">
+      <div class="card">
+        <h2>Welcome Home</h2>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6P-hGtrQSe7WzUDzRr9sr6OqSNpSgfnZTVg&s">
+        <p>This is the homepage. Use the buttons above to explore.</p>
       </div>
-    </a>
+
+      <!-- RSVP for Softball Section -->
+      <a href="https://web.gc.com/teams/i0ZmKWEfWcVh/2025-fall-saasholes" target="_blank" style="text-decoration: none; color: inherit;">
+        <div class="card rsvp-card">
+          <img src="placeholder-image.jpg" alt="Softball RSVP">
+          <h2>Looking to RSVP for Softball? Click here!</h2>
+        </div>
+      </a>
+    </div>
   </main>
   
   <footer>
@@ -163,50 +173,69 @@
 
   <script>
     function render(content) {
-      document.getElementById('content').innerHTML = `<div class="card">${content}</div>`;
+      document.getElementById('content').innerHTML = content;
     }
 
     function showHome() {
       render(`
-        <h2>Welcome Home</h2>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6P-hGtrQSe7WzUDzRr9sr6OqSNpSgfnZTVg&s">
-        <p>This is the homepage. Use the buttons above to explore.</p>
+        <div class="card-container">
+          <div class="card">
+            <h2>Welcome Home</h2>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6P-hGtrQSe7WzUDzRr9sr6OqSNpSgfnZTVg&s">
+            <p>This is the homepage. Use the buttons above to explore.</p>
+          </div>
+
+          <a href="https://web.gc.com/teams/i0ZmKWEfWcVh/2025-fall-saasholes" target="_blank" style="text-decoration: none; color: inherit;">
+            <div class="card rsvp-card">
+              <img src="placeholder-image.jpg" alt="Softball RSVP">
+              <h2>Looking to RSVP for Softball? Click here!</h2>
+            </div>
+          </a>
+        </div>
       `);
     }
 
     function showFish() {
       render(`
-        <h2>Welcome to the Fish Page</h2>
-        <img src="https://thumbs.dreamstime.com/b/cute-clown-fish-cartoon-posing-illustration-58810794.jpg" alt="Fish">
-        <p>Clownfish live in anemones and are known for their symbiotic relationship with them.</p>
-        <p>They are found in warm waters of the Pacific and Indian Oceans.</p>
+        <div class="card">
+          <h2>Welcome to the Fish Page</h2>
+          <img src="https://thumbs.dreamstime.com/b/cute-clown-fish-cartoon-posing-illustration-58810794.jpg" alt="Fish">
+          <p>Clownfish live in anemones and are known for their symbiotic relationship with them.</p>
+          <p>They are found in warm waters of the Pacific and Indian Oceans.</p>
+        </div>
       `);
     }
 
     function showShark() {
       render(`
-        <h2>Welcome to the Shark Page</h2>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/White_shark.jpg" alt="Shark">
-        <p>Sharks have been around for over 400 million years, even before trees existed.</p>
-        <p>The great white shark is one of the ocean’s top predators.</p>
+        <div class="card">
+          <h2>Welcome to the Shark Page</h2>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/White_shark.jpg" alt="Shark">
+          <p>Sharks have been around for over 400 million years, even before trees existed.</p>
+          <p>The great white shark is one of the ocean’s top predators.</p>
+        </div>
       `);
     }
 
     function showLobster() {
       render(`
-        <h2>Welcome to the Lobster Page</h2>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzberUz2eciy1oDiY0YrmOFISab7Buz8VyQA&s" alt="Lobster">
-        <p>Lobsters can live up to 100 years in the wild.</p>
-        <p>They have blue blood due to the presence of copper in their hemocyanin.</p>
+        <div class="card">
+          <h2>Welcome to the Lobster Page</h2>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzberUz2eciy1oDiY0YrmOFISab7Buz8VyQA&s" alt="Lobster">
+          <p>Lobsters can live up to 100 years in the wild.</p>
+          <p>They have blue blood due to the presence of copper in their hemocyanin.</p>
+        </div>
       `);
     }
 
     function showBecky() {
       render(`
-        <h2>Welcome to Becky’s Page</h2>
-        <img src="https://media.licdn.com/dms/image/v2/C4D03AQFDPmBdyw6vqg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1569969167554?e=1760572800&v=beta&t=T4FvFUygr5-b07ZqTrhXG4aA4PpXbWtRD7MLqsdSDLA" alt="Becky">
-        <p>Old. Likes Panera Bread</p>
-        <div id="stopwatch"></div>
+        <div class="card">
+          <h2>Welcome to Becky’s Page</h2>
+          <img src="https://media.licdn.com/dms/image/v2/C4D03AQFDPmBdyw6vqg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1569969167554?e=1760572800&v=beta&t=T4FvFUygr5-b07ZqTrhXG4aA4PpXbWtRD7MLqsdSDLA" alt="Becky">
+          <p>Old. Likes Panera Bread</p>
+          <div id="stopwatch"></div>
+        </div>
       `);
       startStopwatch();
     }
@@ -244,27 +273,33 @@
 
     function showDino() {
       render(`
-        <h2>Proof Dinosaurs Are Real</h2>
-        <img src="https://images.template.net/476822/Cartoon-Dinosaur-Clipart-edit-online.png" alt="Dinosaur">
-        <p>Dinosaurs may be extinct, but their relatives still roam the earth as birds today.</p>
+        <div class="card">
+          <h2>Proof Dinosaurs Are Real</h2>
+          <img src="https://images.template.net/476822/Cartoon-Dinosaur-Clipart-edit-online.png" alt="Dinosaur">
+          <p>Dinosaurs may be extinct, but their relatives still roam the earth as birds today.</p>
+        </div>
       `);
     }
 
     function showJeff() {
       render(`
-        <h2>Welcome to the Jeff Page</h2>
-        <img src="https://media.gettyimages.com/id/127930805/photo/sprint-employee-jeff-strohm-testifies-du.jpg?s=612x612&w=gi&k=20&c=ZJD-efiKAqdnHu-vg58si4HMkT1dRECLsiHJ2xyFwL4=">
-        <p>Jeff was a pivotal role in the conviction of Dr. Conrad Murray.</p>
-        <p>Smokes cigs.</p>
+        <div class="card">
+          <h2>Welcome to the Jeff Page</h2>
+          <img src="https://media.gettyimages.com/id/127930805/photo/sprint-employee-jeff-strohm-testifies-du.jpg?s=612x612&w=gi&k=20&c=ZJD-efiKAqdnHu-vg58si4HMkT1dRECLsiHJ2xyFwL4=">
+          <p>Jeff was a pivotal role in the conviction of Dr. Conrad Murray.</p>
+          <p>Smokes cigs.</p>
+        </div>
       `);
     }
 
     function showIsaac() {
       render(`
-        <h2>Welcome to the Isaac Page</h2>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDSFmKUT8ONBlx7DAZKUtgdpZVIBbdzW46bQ&s" alt="Isaac">
-        <p>Isaac enjoys gambling.</p>
-        <p>Does not smoke cigs.</p>
+        <div class="card">
+          <h2>Welcome to the Isaac Page</h2>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDSFmKUT8ONBlx7DAZKUtgdpZVIBbdzW46bQ&s" alt="Isaac">
+          <p>Isaac enjoys gambling.</p>
+          <p>Does not smoke cigs.</p>
+        </div>
       `);
     }
   </script>
