@@ -3,59 +3,166 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Website</title>
+  <title>Braden's Conspiracy</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      margin: 0; padding: 0;
-      background: #f4f4f4;
+      margin: 0;
+      font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
+      background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+      color: #333;
     }
+
     header {
-      background: #333; color: #fff;
-      padding: 1em; text-align: center;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 15px 25px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.6rem;
+      color: #2193b0;
+    }
+
     nav {
-      background: #444; display: flex;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    nav button {
+      background: #2193b0;
+      color: #fff;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: transform 0.2s, background 0.3s;
+    }
+
+    nav button:hover {
+      background: #17627a;
+      transform: translateY(-2px);
+    }
+
+    main {
+      padding: 40px 20px;
+      display: flex;
       justify-content: center;
     }
-    nav button {
-      background: none; border: none;
-      color: #fff; padding: 1em;
-      cursor: pointer; font-size: 1em;
-    }
-    nav button:hover { background: #666; }
-    main {
-      padding: 20px;
-      max-width: 900px;
-      margin: auto;
-    }
+
     .card-container {
-      display: flex; flex-wrap: wrap; gap: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      gap: 30px;
+      flex-wrap: wrap;
+      width: 100%;
+      max-width: 900px;
     }
+
     .card {
       background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      padding: 20px;
-      flex: 1 1 250px;
+      border-radius: 16px;
+      padding: 30px;
+      flex: 1 1 300px;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      animation: fadeIn 0.4s ease;
     }
+
+    .card h2 {
+      margin-bottom: 15px;
+      font-size: 1.6rem;
+      color: #2193b0;
+    }
+
     .card img {
-      max-width: 100%; border-radius: 10px;
+      max-width: 100%;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
     }
-    .rsvp-card h2 {
-      margin-top: 10px; text-align: center;
+
+    .card p {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+
+    #stopwatch {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #444;
+      background: #f5f5f5;
+      padding: 12px;
+      border-radius: 8px;
+      display: inline-block;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      background: rgba(255,255,255,0.85);
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .rsvp-card {
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .rsvp-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.2);
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Welcome to Our Site</h1>
+    <h1>Braden's Conspiracy</h1>
+    <nav>
+      <button onclick="showHome()">Home</button>
+      <button onclick="showFish()">Fish</button>
+      <button onclick="showShark()">Shark</button>
+      <button onclick="showLobster()">Lobster</button>
+      <button onclick="showBecky()">Becky</button>
+      <button onclick="showDino()">Dinosaurs</button>
+      <button onclick="showJeff()">Jeff</button>
+      <button onclick="showIsaac()">Isaac</button>
+      <button onclick="showSoftball()">Softball</button>
+    </nav>
   </header>
-  <nav>
-    <button onclick="showHome()">Home</button>
-    <button onclick="showSoftball()">Softball</button>
-  </nav>
-  <main id="main"></main>
+  
+  <main id="content">
+    <div class="card-container">
+      <div class="card">
+        <h2>Welcome Home</h2>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6P-hGtrQSe7WzUDzRr9sr6OqSNpSgfnZTVg&s">
+        <p>This is the homepage. Use the buttons above to explore.</p>
+      </div>
+    </div>
+  </main>
+  
+  <footer>
+    <p>Made with ❤️ for curious minds</p>
+  </footer>
 
   <script type="module">
     // --- Firebase Setup ---
@@ -77,23 +184,194 @@
     const db = getFirestore(app);
 
     // --- Render helper ---
-    function render(html) {
-      document.getElementById("main").innerHTML = html;
+    function render(content) {
+      document.getElementById('content').innerHTML = content;
     }
 
-    // --- Home Page ---
+    // --- Default Pages ---
     function showHome() {
       render(`
         <div class="card-container">
           <div class="card">
-            <h2>Welcome</h2>
-            <p>This is the home page of the site. Use the navigation above to explore.</p>
+            <h2>Welcome Home</h2>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6P-hGtrQSe7WzUDzRr9sr6OqSNpSgfnZTVg&s">
+            <p>This is the homepage. Use the buttons above to explore.</p>
           </div>
         </div>
       `);
     }
 
-    // --- Softball Page with RSVP + Blog ---
+    function showFish() {
+      render(`
+        <div class="card">
+          <h2>Welcome to the Fish Page</h2>
+          <img src="https://thumbs.dreamstime.com/b/cute-clown-fish-cartoon-posing-illustration-58810794.jpg" alt="Fish">
+          <p>Clownfish live in anemones and are known for their symbiotic relationship with them.</p>
+          <p>They are found in warm waters of the Pacific and Indian Oceans.</p>
+        </div>
+      `);
+    }
+
+    function showShark() {
+      render(`
+        <div class="card">
+          <h2>Welcome to the Shark Page</h2>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/White_shark.jpg" alt="Shark">
+          <p>Sharks have been around for over 400 million years, even before trees existed.</p>
+          <p>The great white shark is one of the ocean’s top predators.</p>
+        </div>
+      `);
+    }
+
+    function showLobster() {
+      render(`
+        <div class="card">
+          <h2>Welcome to the Lobster Page</h2>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzberUz2eciy1oDiY0YrmOFISab7Buz8VyQA&s" alt="Lobster">
+          <p>Lobsters can live up to 100 years in the wild.</p>
+          <p>They have blue blood due to the presence of copper in their hemocyanin.</p>
+        </div>
+      `);
+    }
+
+    function showBecky() {
+      render(`
+        <div class="card">
+          <h2>Welcome to Becky’s Page</h2>
+          <img src="https://media.licdn.com/dms/image/v2/C4D03AQFDPmBdyw6vqg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1569969167554?e=1760572800&v=beta&t=T4FvFUygr5-b07ZqTrhXG4aA4PpXbWtRD7MLqsdSDLA" alt="Becky">
+          <p>Old. Likes Panera Bread</p>
+          <div id="stopwatch"></div>
+        </div>
+      `);
+      startStopwatch();
+    }
+
+    function startStopwatch() {
+      const birthDate = new Date('1996-06-06T14:04:00');
+      setInterval(() => {
+        const now = new Date();
+
+        let years = now.getFullYear() - birthDate.getFullYear();
+        let months = now.getMonth() - birthDate.getMonth();
+        let days = now.getDate() - birthDate.getDate();
+        let hours = now.getHours() - birthDate.getHours();
+        let minutes = now.getMinutes() - birthDate.getMinutes();
+        let seconds = now.getSeconds() - birthDate.getSeconds();
+
+        if (seconds < 0) { seconds += 60; minutes--; }
+        if (minutes < 0) { minutes += 60; hours--; }
+        if (hours < 0) { hours += 24; days--; }
+        if (days < 0) {
+          const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+          days += prevMonth; months--;
+        }
+        if (months < 0) { months += 12; years--; }
+
+        document.getElementById('stopwatch').innerText =
+          years + " years, " +
+          months + " months, " +
+          days + " days, " +
+          hours + " hours, " +
+          minutes + " minutes, " +
+          seconds + " seconds old.";
+      }, 1000);
+    }
+
+    function showDino() {
+      render(`
+        <div class="card">
+          <h2>Proof Dinosaurs Are Real</h2>
+          <img src="https://images.template.net/476822/Cartoon-Dinosaur-Clipart-edit-online.png" alt="Dinosaur">
+          <p>Dinosaurs may be extinct, but their relatives still roam the earth as birds today.</p>
+        </div>
+      `);
+    }
+
+    function showJeff() {
+      render(`
+        <div class="card">
+          <h2>Welcome to the Jeff Page</h2>
+          <img src="https://media.gettyimages.com/id/127930805/photo/sprint-employee-jeff-strohm-testifies-du.jpg?s=612x612&w=gi&k=20&c=ZJD-efiKAqdnHu-vg58si4HMkT1dRECLsiHJ2xyFwL4=">
+          <p>Jeff was a pivotal role in the conviction of Dr. Conrad Murray.</p>
+          <p>Smokes cigs.</p>
+        </div>
+      `);
+    }
+
+    function showIsaac() {
+      render(`
+        <div class="card">
+          <h2>Welcome to the Isaac Page</h2>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDSFmKUT8ONBlx7DAZKUtgdpZVIBbdzW46bQ&s" alt="Isaac">
+          <p>Isaac enjoys gambling.</p>
+          <p>Does not smoke cigs.</p>
+        </div>
+      `);
+    }
+
+    // --- Firestore Blog Logic ---
+    const postsRef = collection(db, "softballPosts");
+
+    async function addPost() {
+      const textarea = document.getElementById("new-post");
+      if (!textarea.value.trim()) return;
+      await addDoc(postsRef, {
+        text: textarea.value,
+        createdAt: new Date()
+      });
+      textarea.value = "";
+    }
+
+    async function addComment(postId) {
+      const input = document.getElementById("comment-input-" + postId);
+      if (!input.value.trim()) return;
+      const commentsRef = collection(db, `softballPosts/${postId}/comments`);
+      await addDoc(commentsRef, {
+        text: input.value,
+        createdAt: new Date()
+      });
+      input.value = "";
+    }
+
+    function loadComments(postId) {
+      const commentsRef = collection(db, `softballPosts/${postId}/comments`);
+      const q = query(commentsRef, orderBy("createdAt", "asc"));
+      onSnapshot(q, (snapshot) => {
+        const container = document.getElementById("comments-" + postId);
+        if (!container) return;
+        container.innerHTML = "";
+        snapshot.forEach((doc) => {
+          const comment = doc.data();
+          container.innerHTML += `<p style="margin:4px 0;">- ${comment.text}</p>`;
+        });
+      });
+    }
+
+    function loadPosts() {
+      const q = query(postsRef, orderBy("createdAt", "desc"));
+      onSnapshot(q, (snapshot) => {
+        const container = document.getElementById("blog-posts");
+        if (!container) return;
+        container.innerHTML = "";
+        snapshot.forEach((doc) => {
+          const post = doc.data();
+          const postId = doc.id;
+          container.innerHTML += `
+            <div style="margin-bottom:20px; padding:15px; border:1px solid #ddd; border-radius:8px; background:#f9f9f9; text-align:left;">
+              <p>${post.text}</p>
+              <div style="margin-top:10px;">
+                <h4>Comments</h4>
+                <div id="comments-${postId}"></div>
+                <input id="comment-input-${postId}" placeholder="Write a comment" style="width:80%;">
+                <button onclick="addComment('${postId}')">Comment</button>
+              </div>
+            </div>
+          `;
+          loadComments(postId);
+        });
+      });
+    }
+
     function showSoftball() {
       render(`
         <div class="card-container">
@@ -111,82 +389,17 @@
             <div id="blog-posts"></div>
             <h3>Add a Post</h3>
             <textarea id="new-post" rows="3" style="width:100%;"></textarea><br>
-            <button id="add-post-btn">Post</button>
+            <button onclick="addPost()">Post</button>
           </div>
         </div>
       `);
-
-      document.getElementById("add-post-btn").addEventListener("click", addPost);
       loadPosts();
     }
 
-    // --- Firestore Blog Functions ---
-    const postsRef = collection(db, "softballPosts");
-
-    function loadPosts() {
-      const q = query(postsRef, orderBy("createdAt", "desc"));
-      onSnapshot(q, (snapshot) => {
-        const container = document.getElementById("blog-posts");
-        if (!container) return;
-        container.innerHTML = "";
-        snapshot.forEach((doc) => {
-          const post = doc.data();
-          const postId = doc.id;
-          container.innerHTML += `
-            <div style="margin-bottom:20px; padding:15px; border:1px solid #ddd; border-radius:8px; background:#f9f9f9;">
-              <p>${post.text}</p>
-              <div style="margin-top:10px;">
-                <h4>Comments</h4>
-                <div id="comments-${postId}"></div>
-                <input id="comment-input-${postId}" placeholder="Write a comment" style="width:80%;">
-                <button onclick="addComment('${postId}')">Comment</button>
-              </div>
-            </div>
-          `;
-          loadComments(postId);
-        });
-      });
-    }
-
-    async function addPost() {
-      const textarea = document.getElementById("new-post");
-      if (!textarea.value.trim()) return;
-      await addDoc(postsRef, {
-        text: textarea.value,
-        createdAt: new Date()
-      });
-      textarea.value = "";
-    }
-
-    function loadComments(postId) {
-      const commentsRef = collection(db, `softballPosts/${postId}/comments`);
-      const q = query(commentsRef, orderBy("createdAt", "asc"));
-      onSnapshot(q, (snapshot) => {
-        const container = document.getElementById("comments-" + postId);
-        if (!container) return;
-        container.innerHTML = "";
-        snapshot.forEach((doc) => {
-          const comment = doc.data();
-          container.innerHTML += `<p style="margin:4px 0;">- ${comment.text}</p>`;
-        });
-      });
-    }
-
-    async function addComment(postId) {
-      const input = document.getElementById("comment-input-" + postId);
-      if (!input.value.trim()) return;
-      const commentsRef = collection(db, `softballPosts/${postId}/comments`);
-      await addDoc(commentsRef, {
-        text: input.value,
-        createdAt: new Date()
-      });
-      input.value = "";
-    }
-
-    // --- Start on Home page ---
+    // Default start
     showHome();
 
-    // Expose comment function globally
+    // Make comment function global
     window.addComment = addComment;
   </script>
 </body>
