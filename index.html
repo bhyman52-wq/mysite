@@ -150,51 +150,25 @@
     </nav>
   </header>
   
-  <main id="content">
-    <div class="card-container">
-      <div class="card">
-        <h2>Welcome Home</h2>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6P-hGtrQSe7WzUDzRr9sr6OqSNpSgfnZTVg&s">
-        <p>This is the homepage. Use the buttons above to explore.</p>
-      </div>
-    </div>
-  </main>
+  <main id="content"></main>
   
   <footer>
     <p>Made with ❤️ for curious minds</p>
   </footer>
 
-  <script type="module">
-    // --- Firebase Setup ---
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-    import { getFirestore, collection, addDoc, onSnapshot, query, orderBy } 
-      from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyBgbKSD_JfkiCObRRdmQoxIYcN1PDgY7pI",
-      authDomain: "website-9c4b4.firebaseapp.com",
-      projectId: "website-9c4b4",
-      storageBucket: "website-9c4b4.firebasestorage.app",
-      messagingSenderId: "259113173829",
-      appId: "1:259113173829:web:88bdc84c56541e0fbb742c",
-      measurementId: "G-6XR3EN4YCD"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
-    // --- Render helper ---
+  <script>
+    // Render helper
     function render(content) {
       document.getElementById('content').innerHTML = content;
     }
 
-    // --- Default Pages ---
+    // Pages
     function showHome() {
       render(`
         <div class="card-container">
           <div class="card">
             <h2>Welcome Home</h2>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6P-hGtrQSe7WzUDzRr9sr6OqSNpSgfnZTVg&s">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6P-hGtrQSe7WzUDzRr9sr6OqSNpSgfnZTVg&s" alt="Home">
             <p>This is the homepage. Use the buttons above to explore.</p>
           </div>
         </div>
@@ -238,7 +212,7 @@
       render(`
         <div class="card">
           <h2>Welcome to Becky’s Page</h2>
-          <img src="https://media.licdn.com/dms/image/v2/C4D03AQFDPmBdyw6vqg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1569969167554?e=1760572800&v=beta&t=T4FvFUygr5-b07ZqTrhXG4aA4PpXbWtRD7MLqsdSDLA" alt="Becky">
+          <img src="https://media.licdn.com/dms/image/C4D03AQFDPmBdyw6vqg/profile-displayphoto-shrink_400_400/0/1569969167554?e=2147483647&v=beta&t=T4FvFUygr5-b07ZqTrhXG4aA4PpXbWtRD7MLqsdSDLA" alt="Becky">
           <p>Old. Likes Panera Bread</p>
           <div id="stopwatch"></div>
         </div>
@@ -267,13 +241,16 @@
         }
         if (months < 0) { months += 12; years--; }
 
-        document.getElementById('stopwatch').innerText =
-          years + " years, " +
-          months + " months, " +
-          days + " days, " +
-          hours + " hours, " +
-          minutes + " minutes, " +
-          seconds + " seconds old.";
+        const stopwatch = document.getElementById('stopwatch');
+        if (stopwatch) {
+          stopwatch.innerText =
+            years + " years, " +
+            months + " months, " +
+            days + " days, " +
+            hours + " hours, " +
+            minutes + " minutes, " +
+            seconds + " seconds old.";
+        }
       }, 1000);
     }
 
@@ -291,7 +268,7 @@
       render(`
         <div class="card">
           <h2>Welcome to the Jeff Page</h2>
-          <img src="https://media.gettyimages.com/id/127930805/photo/sprint-employee-jeff-strohm-testifies-du.jpg?s=612x612&w=gi&k=20&c=ZJD-efiKAqdnHu-vg58si4HMkT1dRECLsiHJ2xyFwL4=">
+          <img src="https://media.gettyimages.com/id/127930805/photo/sprint-employee-jeff-strohm-testifies-du.jpg?s=612x612&w=gi&k=20&c=ZJD-efiKAqdnHu-vg58si4HMkT1dRECLsiHJ2xyFwL4=" alt="Jeff">
           <p>Jeff was a pivotal role in the conviction of Dr. Conrad Murray.</p>
           <p>Smokes cigs.</p>
         </div>
@@ -307,69 +284,6 @@
           <p>Does not smoke cigs.</p>
         </div>
       `);
-    }
-
-    // --- Firestore Blog Logic ---
-    const postsRef = collection(db, "softballPosts");
-
-    async function addPost() {
-      const textarea = document.getElementById("new-post");
-      if (!textarea.value.trim()) return;
-      await addDoc(postsRef, {
-        text: textarea.value,
-        createdAt: new Date()
-      });
-      textarea.value = "";
-    }
-
-    async function addComment(postId) {
-      const input = document.getElementById("comment-input-" + postId);
-      if (!input.value.trim()) return;
-      const commentsRef = collection(db, `softballPosts/${postId}/comments`);
-      await addDoc(commentsRef, {
-        text: input.value,
-        createdAt: new Date()
-      });
-      input.value = "";
-    }
-
-    function loadComments(postId) {
-      const commentsRef = collection(db, `softballPosts/${postId}/comments`);
-      const q = query(commentsRef, orderBy("createdAt", "asc"));
-      onSnapshot(q, (snapshot) => {
-        const container = document.getElementById("comments-" + postId);
-        if (!container) return;
-        container.innerHTML = "";
-        snapshot.forEach((doc) => {
-          const comment = doc.data();
-          container.innerHTML += `<p style="margin:4px 0;">- ${comment.text}</p>`;
-        });
-      });
-    }
-
-    function loadPosts() {
-      const q = query(postsRef, orderBy("createdAt", "desc"));
-      onSnapshot(q, (snapshot) => {
-        const container = document.getElementById("blog-posts");
-        if (!container) return;
-        container.innerHTML = "";
-        snapshot.forEach((doc) => {
-          const post = doc.data();
-          const postId = doc.id;
-          container.innerHTML += `
-            <div style="margin-bottom:20px; padding:15px; border:1px solid #ddd; border-radius:8px; background:#f9f9f9; text-align:left;">
-              <p>${post.text}</p>
-              <div style="margin-top:10px;">
-                <h4>Comments</h4>
-                <div id="comments-${postId}"></div>
-                <input id="comment-input-${postId}" placeholder="Write a comment" style="width:80%;">
-                <button onclick="addComment('${postId}')">Comment</button>
-              </div>
-            </div>
-          `;
-          loadComments(postId);
-        });
-      });
     }
 
     function showSoftball() {
@@ -396,11 +310,47 @@
       loadPosts();
     }
 
-    // Default start
-    showHome();
+    // Blog with localStorage
+    let posts = JSON.parse(localStorage.getItem('softballPosts')) || [];
 
-    // Make comment function global
-    window.addComment = addComment;
+    function loadPosts() {
+      const container = document.getElementById('blog-posts');
+      if (!container) return;
+      container.innerHTML = posts.map((post, index) => `
+        <div style="margin-bottom:20px; padding:15px; border:1px solid #ddd; border-radius:8px; background:#f9f9f9; text-align:left;">
+          <p>${post.text}</p>
+          <div style="margin-top:10px;">
+            <h4>Comments</h4>
+            <div id="comments-${index}">
+              ${(post.comments || []).map(c => `<p style="margin:4px 0;">- ${c}</p>`).join('')}
+            </div>
+            <input id="comment-input-${index}" placeholder="Write a comment" style="width:80%;">
+            <button onclick="addComment(${index})">Comment</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function addPost() {
+      const textarea = document.getElementById('new-post');
+      if (!textarea || textarea.value.trim() === '') return;
+      posts.unshift({ text: textarea.value, comments: [] });
+      localStorage.setItem('softballPosts', JSON.stringify(posts));
+      textarea.value = '';
+      loadPosts();
+    }
+
+    function addComment(index) {
+      const input = document.getElementById('comment-input-' + index);
+      if (!input || input.value.trim() === '') return;
+      posts[index].comments.push(input.value);
+      localStorage.setItem('softballPosts', JSON.stringify(posts));
+      input.value = '';
+      loadPosts();
+    }
+
+    // Load home on startup
+    showHome();
   </script>
 </body>
 </html>
