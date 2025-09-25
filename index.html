@@ -5,76 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Braden's Conspiracy</title>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #74ebd5, #ACB6E5);
-    }
-    header {
-      background: #fff;
-      padding: 15px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 1.4rem;
-      color: #2193b0;
-    }
-    nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    nav button {
-      background: #2193b0;
-      color: #fff;
-      border: none;
-      padding: 8px 12px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    nav button:hover {
-      background: #17627a;
-    }
-    main {
-      padding: 30px 20px;
-      display: flex;
-      justify-content: center;
-    }
-    .card {
-      background: #fff;
-      border-radius: 10px;
-      padding: 20px;
-      max-width: 600px;
-      text-align: center;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-    }
-    .card img {
-      max-width: 100%;
-      border-radius: 10px;
-      margin-bottom: 15px;
-    }
-    footer {
-      text-align: center;
-      padding: 15px;
-      margin-top: 40px;
-      background: #fff;
-      color: #555;
-    }
-    .rsvp-card {
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .rsvp-card:hover {
-      transform: scale(1.03);
-      box-shadow: 0 6px 14px rgba(0,0,0,0.2);
-    }
+    body { margin: 0; font-family: Arial, sans-serif; background: linear-gradient(135deg,#74ebd5,#ACB6E5);}
+    header {background:#fff; padding:15px; display:flex; justify-content:space-between; align-items:center; box-shadow:0 4px 6px rgba(0,0,0,0.1); position:sticky; top:0; z-index:100;}
+    header h1 {margin:0; font-size:1.4rem; color:#2193b0;}
+    nav {display:flex; flex-wrap:wrap; gap:8px;}
+    nav button {background:#2193b0; color:#fff; border:none; padding:8px 12px; border-radius:5px; cursor:pointer;}
+    nav button:hover {background:#17627a;}
+    main {padding:30px 20px; display:flex; justify-content:center;}
+    .card {background:#fff; border-radius:10px; padding:20px; max-width:600px; text-align:center; box-shadow:0 6px 12px rgba(0,0,0,0.15);}
+    .card img {max-width:100%; border-radius:10px; margin-bottom:15px;}
+    footer {text-align:center; padding:15px; margin-top:40px; background:#fff; color:#555;}
+    .rsvp-card {cursor:pointer; transition:transform 0.2s, box-shadow 0.2s;}
+    .rsvp-card:hover {transform:scale(1.03); box-shadow:0 6px 14px rgba(0,0,0,0.2);}
+    .post, .comment {background:#f9f9f9; border:1px solid #ddd; border-radius:6px; padding:10px; margin:10px 0; text-align:left;}
+    .delete-btn {background:red; color:#fff; border:none; padding:3px 6px; font-size:0.8rem; border-radius:4px; cursor:pointer; margin-left:8px;}
   </style>
 </head>
 <body>
@@ -95,141 +39,52 @@
 
   <main id="content"></main>
 
-  <footer>
-    <p>Made with ❤️ for curious minds</p>
-  </footer>
+  <footer><p>Made with ❤️ for curious minds</p></footer>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 
   <script>
-    function render(content) {
-      document.getElementById("content").innerHTML = content;
-    }
+    // Firebase Config
+    const firebaseConfig = {
+      apiKey: "AIzaSyBgbKSD_JfkiCObRRdmQoxIYcN1PDgY7pI",
+      authDomain: "website-9c4b4.firebaseapp.com",
+      projectId: "website-9c4b4",
+      storageBucket: "website-9c4b4.firebasestorage.app",
+      messagingSenderId: "259113173829",
+      appId: "1:259113173829:web:88bdc84c56541e0fbb742c",
+      measurementId: "G-6XR3EN4YCD"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    const auth = firebase.auth();
+    let currentUser = null;
 
-    function showHome() {
-      render(`
-        <div class="card">
-          <h2>Welcome Home</h2>
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6P-hGtrQSe7WzUDzRr9sr6OqSNpSgfnZTVg&s" alt="Home">
-          <p>This is the homepage. Use the buttons above to explore.</p>
-        </div>
-      `);
-    }
+    // Sign in anonymously
+    auth.signInAnonymously().catch(console.error);
+    auth.onAuthStateChanged(user => { currentUser = user; });
 
-    function showFish() {
-      render(`
-        <div class="card">
-          <h2>Fish</h2>
-          <img src="https://thumbs.dreamstime.com/b/cute-clown-fish-cartoon-posing-illustration-58810794.jpg" alt="Fish">
-          <p>Clownfish live in anemones and are known for their symbiotic relationship.</p>
-        </div>
-      `);
-    }
+    function render(content) { document.getElementById("content").innerHTML = content; }
 
-    function showShark() {
-      render(`
-        <div class="card">
-          <h2>Shark</h2>
-          <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/White_shark.jpg" alt="Shark">
-          <p>Sharks have existed for over 400 million years, even before trees.</p>
-        </div>
-      `);
-    }
+    // Pages
+    function showHome(){render(`<div class="card"><h2>Welcome Home</h2><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6P-hGtrQSe7WzUDzRr9sr6OqSNpSgfnZTVg&s"><p>This is the homepage.</p></div>`);}
+    function showFish(){render(`<div class="card"><h2>Fish</h2><img src="https://thumbs.dreamstime.com/b/cute-clown-fish-cartoon-posing-illustration-58810794.jpg"><p>Clownfish live in anemones.</p></div>`);}
+    function showShark(){render(`<div class="card"><h2>Shark</h2><img src="https://upload.wikimedia.org/wikipedia/commons/5/56/White_shark.jpg"><p>Sharks predate trees.</p></div>`);}
+    function showLobster(){render(`<div class="card"><h2>Lobster</h2><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzberUz2eciy1oDiY0YrmOFISab7Buz8VyQA&s"><p>Lobsters can live to 100 years.</p></div>`);}
+    function showBecky(){render(`<div class="card"><h2>Becky</h2><img src="https://media.licdn.com/dms/image/C4D03AQFDPmBdyw6vqg/profile-displayphoto-shrink_400_400/0/1569969167554"><p>Old. Likes Panera Bread.</p></div>`);}
+    function showDino(){render(`<div class="card"><h2>Dinosaurs</h2><img src="https://images.template.net/476822/Cartoon-Dinosaur-Clipart-edit-online.png"><p>Birds are living dinosaurs.</p></div>`);}
+    function showJeff(){render(`<div class="card"><h2>Jeff</h2><img src="https://media.gettyimages.com/id/127930805/photo/sprint-employee-jeff-strohm-testifies-du.jpg?s=612x612&w=gi"><p>Jeff testified in the Conrad Murray case.</p></div>`);}
+    function showIsaac(){render(`<div class="card"><h2>Isaac</h2><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDSFmKUT8ONBlx7DAZKUtgdpZVIBbdzW46bQ&s"><p>Isaac enjoys gambling.</p></div>`);}
 
-    function showLobster() {
-      render(`
-        <div class="card">
-          <h2>Lobster</h2>
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzberUz2eciy1oDiY0YrmOFISab7Buz8VyQA&s" alt="Lobster">
-          <p>Lobsters can live up to 100 years in the wild.</p>
-        </div>
-      `);
-    }
-
-    function showBecky() {
-      render(`
-        <div class="card">
-          <h2>Becky</h2>
-          <img src="https://media.licdn.com/dms/image/C4D03AQFDPmBdyw6vqg/profile-displayphoto-shrink_400_400/0/1569969167554?e=2147483647&v=beta&t=T4FvFUygr5-b07ZqTrhXG4aA4PpXbWtRD7MLqsdSDLA" alt="Becky">
-          <p>Old. Likes Panera Bread.</p>
-        </div>
-      `);
-    }
-
-    function showDino() {
-      render(`
-        <div class="card">
-          <h2>Dinosaurs</h2>
-          <img src="https://images.template.net/476822/Cartoon-Dinosaur-Clipart-edit-online.png" alt="Dino">
-          <p>Dinosaurs may be extinct, but their relatives live on as birds today.</p>
-        </div>
-      `);
-    }
-
-    function showJeff() {
-      render(`
-        <div class="card">
-          <h2>Jeff</h2>
-          <img src="https://media.gettyimages.com/id/127930805/photo/sprint-employee-jeff-strohm-testifies-du.jpg?s=612x612&w=gi&k=20&c=ZJD-efiKAqdnHu-vg58si4HMkT1dRECLsiHJ2xyFwL4=" alt="Jeff">
-          <p>Jeff was pivotal in the conviction of Dr. Conrad Murray.</p>
-        </div>
-      `);
-    }
-
-    function showIsaac() {
-      render(`
-        <div class="card">
-          <h2>Isaac</h2>
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDSFmKUT8ONBlx7DAZKUtgdpZVIBbdzW46bQ&s" alt="Isaac">
-          <p>Isaac enjoys gambling. Does not smoke cigs.</p>
-        </div>
-      `);
-    }
-
-    // Blog with localStorage
-    let posts = JSON.parse(localStorage.getItem('softballPosts')) || [];
-
-    function loadPosts() {
-      const container = document.getElementById("blog-posts");
-      if (!container) return;
-      container.innerHTML = posts.map((post, index) => `
-        <div style="margin-bottom:15px; padding:10px; border:1px solid #ddd; border-radius:6px;">
-          <p>${post.text}</p>
-          <div>
-            <h4>Comments</h4>
-            <div id="comments-${index}">
-              ${(post.comments || []).map(c => `<p>- ${c}</p>`).join('')}
-            </div>
-            <input id="comment-input-${index}" placeholder="Write a comment">
-            <button onclick="addComment(${index})">Comment</button>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function addPost() {
-      const textarea = document.getElementById("new-post");
-      if (!textarea.value.trim()) return;
-      posts.unshift({ text: textarea.value, comments: [] });
-      localStorage.setItem('softballPosts', JSON.stringify(posts));
-      textarea.value = "";
-      loadPosts();
-    }
-
-    function addComment(index) {
-      const input = document.getElementById("comment-input-" + index);
-      if (!input.value.trim()) return;
-      posts[index].comments.push(input.value);
-      localStorage.setItem('softballPosts', JSON.stringify(posts));
-      input.value = "";
-      loadPosts();
-    }
-
-    function showSoftball() {
+    // Softball Blog
+    function showSoftball(){
       render(`
         <div class="card">
           <a href="https://web.gc.com/teams/i0ZmKWEfWcVh/2025-fall-saasholes" target="_blank" style="text-decoration:none; color:inherit;">
             <div class="rsvp-card">
-              <img src="https://thumbs.dreamstime.com/b/softball-ball-face-vector-image-10361808.jpg" alt="Softball">
-              <h2>RSVP for Softball Here</h2>
+              <img src="https://thumbs.dreamstime.com/b/softball-ball-face-vector-image-10361808.jpg"><h2>RSVP for Softball</h2>
             </div>
           </a>
           <h2>Softball Blog</h2>
@@ -241,7 +96,68 @@
       loadPosts();
     }
 
-    // Start on home
+    function addPost(){
+      const textarea=document.getElementById("new-post");
+      if(!textarea.value.trim() || !currentUser) return;
+      db.collection("softballPosts").add({
+        text:textarea.value,
+        uid:currentUser.uid,
+        created:firebase.firestore.FieldValue.serverTimestamp(),
+        comments:[]
+      });
+      textarea.value="";
+    }
+
+    function deletePost(id, uid){
+      if(currentUser && currentUser.uid===uid){
+        db.collection("softballPosts").doc(id).delete();
+      }
+    }
+
+    function addComment(postId){
+      const input=document.getElementById("comment-input-"+postId);
+      if(!input.value.trim() || !currentUser) return;
+      db.collection("softballPosts").doc(postId).update({
+        comments:firebase.firestore.FieldValue.arrayUnion({text:input.value,uid:currentUser.uid})
+      });
+      input.value="";
+    }
+
+    function deleteComment(postId, comment, uid){
+      if(currentUser && currentUser.uid===uid){
+        db.collection("softballPosts").doc(postId).update({
+          comments:firebase.firestore.FieldValue.arrayRemove(comment)
+        });
+      }
+    }
+
+    function loadPosts(){
+      db.collection("softballPosts").orderBy("created","desc")
+        .onSnapshot(snapshot=>{
+          const container=document.getElementById("blog-posts");
+          if(!container) return;
+          container.innerHTML="";
+          snapshot.forEach(doc=>{
+            const post=doc.data(); post.id=doc.id;
+            let commentsHTML=post.comments.map(c=>{
+              const del=(currentUser && c.uid===currentUser.uid)?`<button class="delete-btn" onclick='deleteComment("${post.id}", ${JSON.stringify(c)}, "${c.uid}")'>X</button>`:"";
+              return `<div class="comment">${c.text} ${del}</div>`;
+            }).join("");
+            const delPost=(currentUser && currentUser.uid===post.uid)?`<button class="delete-btn" onclick='deletePost("${post.id}", "${post.uid}")'>Delete Post</button>`:"";
+            container.innerHTML+=`
+              <div class="post">
+                <p>${post.text}</p>
+                ${delPost}
+                <div><h4>Comments</h4>${commentsHTML}</div>
+                <input id="comment-input-${post.id}" placeholder="Write a comment">
+                <button onclick="addComment('${post.id}')">Comment</button>
+              </div>
+            `;
+          });
+        });
+    }
+
+    // Start
     showHome();
   </script>
 </body>
