@@ -146,6 +146,7 @@
       <button onclick="showDino()">Dinosaurs</button>
       <button onclick="showJeff()">Jeff</button>
       <button onclick="showIsaac()">Isaac</button>
+      <button onclick="showSoftball()">Softball</button>
     </nav>
   </header>
   
@@ -156,14 +157,6 @@
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6P-hGtrQSe7WzUDzRr9sr6OqSNpSgfnZTVg&s">
         <p>This is the homepage. Use the buttons above to explore.</p>
       </div>
-
-      <!-- RSVP for Softball Section -->
-      <a href="https://web.gc.com/teams/i0ZmKWEfWcVh/2025-fall-saasholes" target="_blank" style="text-decoration: none; color: inherit;">
-        <div class="card rsvp-card">
-          <img src="https://thumbs.dreamstime.com/b/softball-ball-face-vector-image-10361808.jpg" alt="Softball RSVP">
-          <h2>Looking to RSVP for Softball? Click here!</h2>
-        </div>
-      </a>
     </div>
   </main>
   
@@ -184,13 +177,6 @@
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6P-hGtrQSe7WzUDzRr9sr6OqSNpSgfnZTVg&s">
             <p>This is the homepage. Use the buttons above to explore.</p>
           </div>
-
-          <a href="https://web.gc.com/teams/i0ZmKWEfWcVh/2025-fall-saasholes" target="_blank" style="text-decoration: none; color: inherit;">
-            <div class="card rsvp-card">
-              <img src="https://thumbs.dreamstime.com/b/softball-ball-face-vector-image-10361808.jpg" alt="Softball RSVP">
-              <h2>Looking to RSVP for Softball? Click here!</h2>
-            </div>
-          </a>
         </div>
       `);
     }
@@ -301,6 +287,68 @@
           <p>Does not smoke cigs.</p>
         </div>
       `);
+    }
+
+    function showSoftball() {
+      render(`
+        <div class="card-container">
+          <!-- RSVP Section -->
+          <a href="https://web.gc.com/teams/i0ZmKWEfWcVh/2025-fall-saasholes" target="_blank" style="text-decoration: none; color: inherit;">
+            <div class="card rsvp-card">
+              <img src="https://thumbs.dreamstime.com/b/softball-ball-face-vector-image-10361808.jpg" alt="Softball RSVP">
+              <h2>Looking to RSVP for Softball? Click here!</h2>
+            </div>
+          </a>
+
+          <!-- Blog Section -->
+          <div class="card" style="flex: 1 1 100%;">
+            <h2>Softball Blog</h2>
+            <div id="blog-posts"></div>
+            <h3>Add a Post</h3>
+            <textarea id="new-post" rows="3" style="width:100%;"></textarea><br>
+            <button onclick="addPost()">Post</button>
+          </div>
+        </div>
+      `);
+      loadPosts();
+    }
+
+    let posts = JSON.parse(localStorage.getItem('softballPosts')) || [];
+
+    function loadPosts() {
+      const container = document.getElementById('blog-posts');
+      if (!container) return;
+      container.innerHTML = posts.map((post, index) => `
+        <div style="margin-bottom:20px; padding:15px; border:1px solid #ddd; border-radius:8px; background:#f9f9f9; text-align:left;">
+          <p>${post.text}</p>
+          <div style="margin-top:10px;">
+            <h4>Comments</h4>
+            <div id="comments-${index}">
+              ${(post.comments || []).map(c => `<p style="margin:4px 0;">- ${c}</p>`).join('')}
+            </div>
+            <input id="comment-input-${index}" placeholder="Write a comment" style="width:80%;">
+            <button onclick="addComment(${index})">Comment</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function addPost() {
+      const textarea = document.getElementById('new-post');
+      if (textarea.value.trim() === '') return;
+      posts.unshift({ text: textarea.value, comments: [] });
+      localStorage.setItem('softballPosts', JSON.stringify(posts));
+      textarea.value = '';
+      loadPosts();
+    }
+
+    function addComment(index) {
+      const input = document.getElementById('comment-input-' + index);
+      if (input.value.trim() === '') return;
+      posts[index].comments.push(input.value);
+      localStorage.setItem('softballPosts', JSON.stringify(posts));
+      input.value = '';
+      loadPosts();
     }
   </script>
 </body>
