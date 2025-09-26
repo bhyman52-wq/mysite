@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -133,19 +134,11 @@
       box-shadow: 0 10px 24px rgba(0,0,0,0.2);
     }
 
-    /* Blog styling */
     .blog-entry {
       margin-bottom: 25px;
       padding-bottom: 15px;
       border-bottom: 1px solid #ddd;
       text-align: left;
-    }
-
-    .blog-entry strong {
-      color: #2193b0;
-      display: block;
-      margin-bottom: 8px;
-      font-size: 1.1rem;
     }
   </style>
 </head>
@@ -165,23 +158,18 @@
     </nav>
   </header>
   
-  <main id="content">
-    <div class="card-container">
-      <div class="card">
-        <h2>Welcome Home</h2>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6P-hGtrQSe7WzUDzRr9sr6OqSNpSgfnZTVg&s">
-        <p>This is the homepage. Use the buttons above to explore.</p>
-      </div>
-    </div>
-  </main>
+  <main id="content"></main>
   
   <footer>
     <p>Made with ❤️ for curious minds</p>
   </footer>
 
   <script>
-    function render(content) {
+    function render(content, tab) {
       document.getElementById('content').innerHTML = content;
+      if (tab) {
+        history.pushState({tab: tab}, "", "#" + tab);
+      }
     }
 
     function showHome() {
@@ -193,7 +181,7 @@
             <p>This is the homepage. Use the buttons above to explore.</p>
           </div>
         </div>
-      `);
+      `, "home");
     }
 
     function showFish() {
@@ -204,7 +192,7 @@
           <p>Clownfish live in anemones and are known for their symbiotic relationship with them.</p>
           <p>They are found in warm waters of the Pacific and Indian Oceans.</p>
         </div>
-      `);
+      `, "fish");
     }
 
     function showShark() {
@@ -215,7 +203,7 @@
           <p>Sharks have been around for over 400 million years, even before trees existed.</p>
           <p>The great white shark is one of the ocean’s top predators.</p>
         </div>
-      `);
+      `, "shark");
     }
 
     function showLobster() {
@@ -226,7 +214,7 @@
           <p>Lobsters can live up to 100 years in the wild.</p>
           <p>They have blue blood due to the presence of copper in their hemocyanin.</p>
         </div>
-      `);
+      `, "lobster");
     }
 
     function showBecky() {
@@ -237,7 +225,7 @@
           <p>Old. Likes Panera Bread</p>
           <div id="stopwatch"></div>
         </div>
-      `);
+      `, "becky");
       startStopwatch();
     }
 
@@ -279,7 +267,7 @@
           <img src="https://images.template.net/476822/Cartoon-Dinosaur-Clipart-edit-online.png" alt="Dinosaur">
           <p>Dinosaurs may be extinct, but their relatives still roam the earth as birds today.</p>
         </div>
-      `);
+      `, "dino");
     }
 
     function showJeff() {
@@ -290,7 +278,7 @@
           <p>Jeff was a pivotal role in the conviction of Dr. Conrad Murray.</p>
           <p>Smokes cigs.</p>
         </div>
-      `);
+      `, "jeff");
     }
 
     function showIsaac() {
@@ -301,13 +289,12 @@
           <p>Isaac enjoys gambling.</p>
           <p>Does not smoke cigs.</p>
         </div>
-      `);
+      `, "isaac");
     }
 
     function showSoftball() {
       render(`
         <div class="card-container">
-          <!-- RSVP Section -->
           <a href="https://web.gc.com/teams/i0ZmKWEfWcVh/2025-fall-saasholes" target="_blank" style="text-decoration: none; color: inherit;">
             <div class="card rsvp-card">
               <img src="https://thumbs.dreamstime.com/b/softball-ball-face-vector-image-10361808.jpg" alt="Softball RSVP">
@@ -315,7 +302,6 @@
             </div>
           </a>
 
-          <!-- Blog Section -->
           <div class="card" style="flex: 1 1 100%;">
             <h2>Softball Blog</h2>
 
@@ -362,8 +348,28 @@
             </div>
           </div>
         </div>
-      `);
+      `, "softball");
+    }
+
+    // Handle browser navigation and page reloads
+    window.addEventListener("popstate", loadFromHash);
+    window.addEventListener("DOMContentLoaded", loadFromHash);
+
+    function loadFromHash() {
+      const hash = window.location.hash.replace("#", "");
+      switch(hash) {
+        case "fish": showFish(); break;
+        case "shark": showShark(); break;
+        case "lobster": showLobster(); break;
+        case "becky": showBecky(); break;
+        case "dino": showDino(); break;
+        case "jeff": showJeff(); break;
+        case "isaac": showIsaac(); break;
+        case "softball": showSoftball(); break;
+        default: showHome(); break;
+      }
     }
   </script>
 </body>
 </html>
+```
