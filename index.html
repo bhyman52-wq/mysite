@@ -146,6 +146,7 @@
       <button onclick="showDino()">Dinosaurs</button>
       <button onclick="showJeff()">Jeff</button>
       <button onclick="showIsaac()">Isaac</button>
+      <button onclick="showSoftball()">Softball</button>
     </nav>
   </header>
   
@@ -156,14 +157,6 @@
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6P-hGtrQSe7WzUDzRr9sr6OqSNpSgfnZTVg&s">
         <p>This is the homepage. Use the buttons above to explore.</p>
       </div>
-
-      <!-- RSVP for Softball Section -->
-      <a href="https://web.gc.com/teams/i0ZmKWEfWcVh/2025-fall-saasholes" target="_blank" style="text-decoration: none; color: inherit;">
-        <div class="card rsvp-card">
-          <img src="https://thumbs.dreamstime.com/b/softball-ball-face-vector-image-10361808.jpg" alt="Softball RSVP">
-          <h2>Looking to RSVP for Softball? Click here!</h2>
-        </div>
-      </a>
     </div>
   </main>
   
@@ -177,66 +170,59 @@
     }
 
     function showHome() {
-      render(
+      render(`
         <div class="card-container">
           <div class="card">
             <h2>Welcome Home</h2>
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6P-hGtrQSe7WzUDzRr9sr6OqSNpSgfnZTVg&s">
             <p>This is the homepage. Use the buttons above to explore.</p>
           </div>
-
-          <a href="https://web.gc.com/teams/i0ZmKWEfWcVh/2025-fall-saasholes" target="_blank" style="text-decoration: none; color: inherit;">
-            <div class="card rsvp-card">
-              <img src="https://thumbs.dreamstime.com/b/softball-ball-face-vector-image-10361808.jpg" alt="Softball RSVP">
-              <h2>Looking to RSVP for Softball? Click here!</h2>
-            </div>
-          </a>
         </div>
-      );
+      `);
     }
 
     function showFish() {
-      render(
+      render(`
         <div class="card">
           <h2>Welcome to the Fish Page</h2>
           <img src="https://thumbs.dreamstime.com/b/cute-clown-fish-cartoon-posing-illustration-58810794.jpg" alt="Fish">
           <p>Clownfish live in anemones and are known for their symbiotic relationship with them.</p>
           <p>They are found in warm waters of the Pacific and Indian Oceans.</p>
         </div>
-      );
+      `);
     }
 
     function showShark() {
-      render(
+      render(`
         <div class="card">
           <h2>Welcome to the Shark Page</h2>
           <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/White_shark.jpg" alt="Shark">
           <p>Sharks have been around for over 400 million years, even before trees existed.</p>
           <p>The great white shark is one of the ocean’s top predators.</p>
         </div>
-      );
+      `);
     }
 
     function showLobster() {
-      render(
+      render(`
         <div class="card">
           <h2>Welcome to the Lobster Page</h2>
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzberUz2eciy1oDiY0YrmOFISab7Buz8VyQA&s" alt="Lobster">
           <p>Lobsters can live up to 100 years in the wild.</p>
           <p>They have blue blood due to the presence of copper in their hemocyanin.</p>
         </div>
-      );
+      `);
     }
 
     function showBecky() {
-      render(
+      render(`
         <div class="card">
           <h2>Welcome to Becky’s Page</h2>
           <img src="https://media.licdn.com/dms/image/v2/C4D03AQFDPmBdyw6vqg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1569969167554?e=1760572800&v=beta&t=T4FvFUygr5-b07ZqTrhXG4aA4PpXbWtRD7MLqsdSDLA" alt="Becky">
           <p>Old. Likes Panera Bread</p>
           <div id="stopwatch"></div>
         </div>
-      );
+      `);
       startStopwatch();
     }
 
@@ -272,35 +258,97 @@
     }
 
     function showDino() {
-      render(
+      render(`
         <div class="card">
           <h2>Proof Dinosaurs Are Real</h2>
           <img src="https://images.template.net/476822/Cartoon-Dinosaur-Clipart-edit-online.png" alt="Dinosaur">
           <p>Dinosaurs may be extinct, but their relatives still roam the earth as birds today.</p>
         </div>
-      );
+      `);
     }
 
     function showJeff() {
-      render(
+      render(`
         <div class="card">
           <h2>Welcome to the Jeff Page</h2>
           <img src="https://media.gettyimages.com/id/127930805/photo/sprint-employee-jeff-strohm-testifies-du.jpg?s=612x612&w=gi&k=20&c=ZJD-efiKAqdnHu-vg58si4HMkT1dRECLsiHJ2xyFwL4=">
           <p>Jeff was a pivotal role in the conviction of Dr. Conrad Murray.</p>
           <p>Smokes cigs.</p>
         </div>
-      );
+      `);
     }
 
     function showIsaac() {
-      render(
+      render(`
         <div class="card">
           <h2>Welcome to the Isaac Page</h2>
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDSFmKUT8ONBlx7DAZKUtgdpZVIBbdzW46bQ&s" alt="Isaac">
           <p>Isaac enjoys gambling.</p>
           <p>Does not smoke cigs.</p>
         </div>
-      );
+      `);
+    }
+
+    function showSoftball() {
+      render(`
+        <div class="card-container">
+          <!-- RSVP Section -->
+          <a href="https://web.gc.com/teams/i0ZmKWEfWcVh/2025-fall-saasholes" target="_blank" style="text-decoration: none; color: inherit;">
+            <div class="card rsvp-card">
+              <img src="https://thumbs.dreamstime.com/b/softball-ball-face-vector-image-10361808.jpg" alt="Softball RSVP">
+              <h2>Looking to RSVP for Softball? Click here!</h2>
+            </div>
+          </a>
+
+          <!-- Blog Section -->
+          <div class="card" style="flex: 1 1 100%;">
+            <h2>Softball Blog</h2>
+            <div id="blog-posts"></div>
+            <h3>Add a Post</h3>
+            <textarea id="new-post" rows="3" style="width:100%;"></textarea><br>
+            <button onclick="addPost()">Post</button>
+          </div>
+        </div>
+      `);
+      loadPosts();
+    }
+
+    let posts = JSON.parse(localStorage.getItem('softballPosts')) || [];
+
+    function loadPosts() {
+      const container = document.getElementById('blog-posts');
+      if (!container) return;
+      container.innerHTML = posts.map((post, index) => `
+        <div style="margin-bottom:20px; padding:15px; border:1px solid #ddd; border-radius:8px; background:#f9f9f9; text-align:left;">
+          <p>${post.text}</p>
+          <div style="margin-top:10px;">
+            <h4>Comments</h4>
+            <div id="comments-${index}">
+              ${(post.comments || []).map(c => `<p style="margin:4px 0;">- ${c}</p>`).join('')}
+            </div>
+            <input id="comment-input-${index}" placeholder="Write a comment" style="width:80%;">
+            <button onclick="addComment(${index})">Comment</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function addPost() {
+      const textarea = document.getElementById('new-post');
+      if (textarea.value.trim() === '') return;
+      posts.unshift({ text: textarea.value, comments: [] });
+      localStorage.setItem('softballPosts', JSON.stringify(posts));
+      textarea.value = '';
+      loadPosts();
+    }
+
+    function addComment(index) {
+      const input = document.getElementById('comment-input-' + index);
+      if (input.value.trim() === '') return;
+      posts[index].comments.push(input.value);
+      localStorage.setItem('softballPosts', JSON.stringify(posts));
+      input.value = '';
+      loadPosts();
     }
   </script>
 </body>
