@@ -1,57 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Braden's Conspiracy</title>
   <style>
     body {
       margin: 0;
       font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
-      background: linear-gradient(135deg,#74ebd5,#ACB6E5);
+      background: linear-gradient(135deg, #74ebd5, #ACB6E5);
       color: #333;
     }
+
     header {
-      background: rgba(255,255,255,0.9);
+      background: rgba(255, 255, 255, 0.9);
       padding: 15px 25px;
-      display:flex;
-      flex-wrap:wrap;
-      justify-content:space-between;
-      align-items:center;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       position: sticky;
       top: 0;
       z-index: 100;
     }
-    header h1 { margin: 0; font-size: 1.6rem; color: #2193b0; }
-    nav { display:flex; gap:10px; flex-wrap:wrap; }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.6rem;
+      color: #2193b0;
+    }
+
+    nav {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
     nav button {
-      background:#2193b0; color:#fff; border:none;
-      padding:8px 14px; border-radius:6px; cursor:pointer;
-      font-size:0.95rem; transition: transform 0.15s, background 0.2s;
+      background: #2193b0;
+      color: #fff;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: transform 0.2s, background 0.3s;
     }
-    nav button:hover { background:#17627a; transform:translateY(-2px); }
-    main { padding:40px 20px; display:flex; justify-content:center; }
-    .card-container { display:flex; gap:30px; flex-wrap:wrap; width:100%; max-width:900px; justify-content:center; }
+
+    nav button:hover {
+      background: #17627a;
+      transform: translateY(-2px);
+    }
+
+    main {
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .card-container {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      gap: 30px;
+      flex-wrap: wrap;
+      width: 100%;
+      max-width: 900px;
+    }
+
     .card {
-      background:#fff; border-radius:16px; padding:30px;
-      flex:1 1 300px; max-width:400px; text-align:center;
-      box-shadow:0 8px 20px rgba(0,0,0,0.15);
+      background: #fff;
+      border-radius: 16px;
+      padding: 30px;
+      flex: 1 1 300px;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      animation: fadeIn 0.4s ease;
     }
-    .card h2 { margin-bottom:15px; font-size:1.6rem; color:#2193b0; }
-    .card img { max-width:100%; border-radius:12px; margin-bottom:20px; box-shadow:0 6px 15px rgba(0,0,0,0.2); }
-    .card p { font-size:1rem; line-height:1.6; margin-bottom:10px; text-align:left; }
-    .rsvp-card { cursor:pointer; transition: transform 0.2s ease, box-shadow 0.2s ease; text-align:center; }
-    .rsvp-card:hover { transform:scale(1.03); box-shadow:0 10px 24px rgba(0,0,0,0.2); }
-    footer { text-align:center; padding:20px; margin-top:40px; background: rgba(255,255,255,0.85); font-size:0.9rem; color:#555; }
-    .post { background:#f9f9f9; border:1px solid #ddd; border-radius:8px; padding:12px; margin-bottom:12px; text-align:left; }
-    .comment { background:#fff; border-radius:6px; padding:8px; margin:6px 0; border:1px solid #e6e6e6; }
-    .controls { margin-top:8px; display:flex; gap:8px; align-items:center; }
-    .btn { background:#2193b0; color:#fff; border:none; padding:6px 10px; border-radius:6px; cursor:pointer; }
-    .btn:disabled { opacity:0.55; cursor:not-allowed; }
-    .delete-btn { background:#d9534f; padding:6px 8px; border-radius:6px; color:#fff; border:none; cursor:pointer; }
-    input[type="text"], textarea { width:100%; padding:8px; border-radius:6px; border:1px solid #ccc; box-sizing:border-box; }
-    #status { font-size:0.9rem; color:#444; margin-left:12px; }
+
+    .card h2 {
+      margin-bottom: 15px;
+      font-size: 1.6rem;
+      color: #2193b0;
+    }
+
+    .card img {
+      max-width: 100%;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+
+    .card p {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+
+    #stopwatch {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #444;
+      background: #f5f5f5;
+      padding: 12px;
+      border-radius: 8px;
+      display: inline-block;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      background: rgba(255,255,255,0.85);
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .rsvp-card {
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .rsvp-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.2);
+    }
   </style>
 </head>
 <body>
@@ -66,405 +146,162 @@
       <button onclick="showDino()">Dinosaurs</button>
       <button onclick="showJeff()">Jeff</button>
       <button onclick="showIsaac()">Isaac</button>
-      <button onclick="showSoftball()">Softball</button>
     </nav>
   </header>
-
+  
   <main id="content">
-    <!-- content replaced by JS -->
-  </main>
+    <div class="card-container">
+      <div class="card">
+        <h2>Welcome Home</h2>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6P-hGtrQSe7WzUDzRr9sr6OqSNpSgfnZTVg&s">
+        <p>This is the homepage. Use the buttons above to explore.</p>
+      </div>
 
+      <!-- RSVP for Softball Section -->
+      <a href="https://web.gc.com/teams/i0ZmKWEfWcVh/2025-fall-saasholes" target="_blank" style="text-decoration: none; color: inherit;">
+        <div class="card rsvp-card">
+          <img src="https://thumbs.dreamstime.com/b/softball-ball-face-vector-image-10361808.jpg" alt="Softball RSVP">
+          <h2>Looking to RSVP for Softball? Click here!</h2>
+        </div>
+      </a>
+    </div>
+  </main>
+  
   <footer>
     <p>Made with ❤️ for curious minds</p>
   </footer>
 
-  <!-- Firebase compat SDK, simpler for inline scripts -->
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-
   <script>
-  /**************************************************************************
-   Notes, quick: make sure Firestore exists in your Firebase console,
-   Authentication is enabled for anonymous sign in, and Firestore rules
-   allow authenticated writes while you test. See the rule snippet below.
-  **************************************************************************/
-
-  // --- Firebase config, from you
-  const firebaseConfig = {
-    apiKey: "AIzaSyBgbKSD_JfkiCObRRdmQoxIYcN1PDgY7pI",
-    authDomain: "website-9c4b4.firebaseapp.com",
-    projectId: "website-9c4b4",
-    storageBucket: "website-9c4b4.firebasestorage.app",
-    messagingSenderId: "259113173829",
-    appId: "1:259113173829:web:88bdc84c56541e0fbb742c",
-    measurementId: "G-6XR3EN4YCD"
-  };
-
-  // init
-  firebase.initializeApp(firebaseConfig);
-  const auth = firebase.auth();
-  const db = firebase.firestore();
-
-  // state
-  let currentUser = null;
-  let unsubscribePosts = null;
-  const unsubscribeComments = {}; // map postId -> unsubscribe function
-
-  // util to escape text when injecting into HTML
-  function escapeHTML(s) {
-    if (!s && s !== 0) return '';
-    return String(s)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#39;');
-  }
-
-  // anonymous sign-in
-  auth.signInAnonymously()
-    .catch(err => console.error('Anonymous sign-in failed', err));
-
-  auth.onAuthStateChanged(user => {
-    currentUser = user;
-    console.info('Auth state changed, uid:', user ? user.uid : null);
-    // If we're on the softball page, reload posts so delete buttons appear
-    if (document.getElementById('blog-posts')) {
-      loadPosts(); // reload so UI reflects current user
+    function render(content) {
+      document.getElementById('content').innerHTML = content;
     }
-  });
 
-  // Render helper
-  function render(html) {
-    document.getElementById('content').innerHTML = html;
-  }
+    function showHome() {
+      render(
+        <div class="card-container">
+          <div class="card">
+            <h2>Welcome Home</h2>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6P-hGtrQSe7WzUDzRr9sr6OqSNpSgfnZTVg&s">
+            <p>This is the homepage. Use the buttons above to explore.</p>
+          </div>
 
-  // Pages
-  function showHome() {
-    render(`
-      <div class="card-container">
+          <a href="https://web.gc.com/teams/i0ZmKWEfWcVh/2025-fall-saasholes" target="_blank" style="text-decoration: none; color: inherit;">
+            <div class="card rsvp-card">
+              <img src="https://thumbs.dreamstime.com/b/softball-ball-face-vector-image-10361808.jpg" alt="Softball RSVP">
+              <h2>Looking to RSVP for Softball? Click here!</h2>
+            </div>
+          </a>
+        </div>
+      );
+    }
+
+    function showFish() {
+      render(
         <div class="card">
-          <h2>Welcome Home</h2>
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6P-hGtrQSe7WzUDzRr9sr6OqSNpSgfnZTVg&s" alt="Home">
-          <p>This is the homepage. Use the buttons above to explore.</p>
+          <h2>Welcome to the Fish Page</h2>
+          <img src="https://thumbs.dreamstime.com/b/cute-clown-fish-cartoon-posing-illustration-58810794.jpg" alt="Fish">
+          <p>Clownfish live in anemones and are known for their symbiotic relationship with them.</p>
+          <p>They are found in warm waters of the Pacific and Indian Oceans.</p>
         </div>
-      </div>
-    `);
-  }
+      );
+    }
 
-  function showFish() {
-    render(`
-      <div class="card">
-        <h2>Welcome to the Fish Page</h2>
-        <img src="https://thumbs.dreamstime.com/b/cute-clown-fish-cartoon-posing-illustration-58810794.jpg" alt="Fish">
-        <p>Clownfish live in anemones, and are known for their symbiotic relationship with them.</p>
-        <p>They are found in warm waters of the Pacific and Indian Oceans.</p>
-      </div>
-    `);
-  }
-
-  function showShark() {
-    render(`
-      <div class="card">
-        <h2>Welcome to the Shark Page</h2>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/White_shark.jpg" alt="Shark">
-        <p>Sharks have been around for over 400 million years, even before trees existed.</p>
-        <p>The great white shark is one of the ocean’s top predators.</p>
-      </div>
-    `);
-  }
-
-  function showLobster() {
-    render(`
-      <div class="card">
-        <h2>Welcome to the Lobster Page</h2>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzberUz2eciy1oDiY0YrmOFISab7Buz8VyQA&s" alt="Lobster">
-        <p>Lobsters can live up to 100 years in the wild.</p>
-        <p>They have blue blood due to copper in their hemocyanin.</p>
-      </div>
-    `);
-  }
-
-  function showBecky() {
-    render(`
-      <div class="card">
-        <h2>Welcome to Becky’s Page</h2>
-        <img src="https://media.licdn.com/dms/image/C4D03AQFDPmBdyw6vqg/profile-displayphoto-shrink_400_400/0/1569969167554" alt="Becky">
-        <p>Old. Likes Panera Bread</p>
-      </div>
-    `);
-  }
-
-  function showDino() {
-    render(`
-      <div class="card">
-        <h2>Proof Dinosaurs Are Real</h2>
-        <img src="https://images.template.net/476822/Cartoon-Dinosaur-Clipart-edit-online.png" alt="Dinosaur">
-        <p>Dinosaurs may be extinct, but their relatives still roam the earth as birds today.</p>
-      </div>
-    `);
-  }
-
-  function showJeff() {
-    render(`
-      <div class="card">
-        <h2>Welcome to the Jeff Page</h2>
-        <img src="https://media.gettyimages.com/id/127930805/photo/sprint-employee-jeff-strohm-testifies-du.jpg?s=612x612&w=gi" alt="Jeff">
-        <p>Jeff was a pivotal role in the conviction of Dr. Conrad Murray.</p>
-      </div>
-    `);
-  }
-
-  function showIsaac() {
-    render(`
-      <div class="card">
-        <h2>Welcome to the Isaac Page</h2>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDSFmKUT8ONBlx7DAZKUtgdpZVIBbdzW46bQ&s" alt="Isaac">
-        <p>Isaac enjoys gambling.</p>
-      </div>
-    `);
-  }
-
-  // --- SOFTBALL BLOG UI ---
-  function showSoftball() {
-    render(`
-      <div class="card" style="max-width:900px;">
-        <a href="https://web.gc.com/teams/i0ZmKWEfWcVh/2025-fall-saasholes" target="_blank" style="text-decoration:none; color:inherit;">
-          <div class="rsvp-card">
-            <img src="https://thumbs.dreamstime.com/b/softball-ball-face-vector-image-10361808.jpg" alt="Softball RSVP" style="max-width:180px; display:block; margin:0 auto 10px;">
-            <h2>RSVP for Softball</h2>
-          </div>
-        </a>
-
-        <h2 style="margin-top:16px;">Softball Blog</h2>
-
-        <div style="display:flex; gap:12px; align-items:center;">
-          <textarea id="new-post" rows="3" placeholder="Write a weekly update..." style="flex:1; padding:10px; border-radius:8px; border:1px solid #ddd;"></textarea>
-          <div>
-            <button id="post-btn" class="btn">Post</button>
-            <div id="status"></div>
-          </div>
+    function showShark() {
+      render(
+        <div class="card">
+          <h2>Welcome to the Shark Page</h2>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/White_shark.jpg" alt="Shark">
+          <p>Sharks have been around for over 400 million years, even before trees existed.</p>
+          <p>The great white shark is one of the ocean’s top predators.</p>
         </div>
-
-        <div id="blog-posts" style="margin-top:18px;"></div>
-      </div>
-    `);
-
-    // hook post button
-    document.getElementById('post-btn').addEventListener('click', () => addPost());
-    // initial load
-    loadPosts();
-  }
-
-  // Add post
-  async function addPost() {
-    const ta = document.getElementById('new-post');
-    if (!ta) return;
-    const text = ta.value.trim();
-    if (!text) return;
-    if (!currentUser) {
-      alert('Signing in, please wait a second and try again.');
-      return;
+      );
     }
-    try {
-      document.getElementById('status').innerText = 'Posting...';
-      await db.collection('softballPosts').add({
-        text,
-        uid: currentUser.uid,
-        created: firebase.firestore.FieldValue.serverTimestamp()
-      });
-      ta.value = '';
-      document.getElementById('status').innerText = '';
-    } catch (err) {
-      console.error('addPost error', err);
-      alert('Error posting, see console for details.');
-      document.getElementById('status').innerText = '';
+
+    function showLobster() {
+      render(
+        <div class="card">
+          <h2>Welcome to the Lobster Page</h2>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzberUz2eciy1oDiY0YrmOFISab7Buz8VyQA&s" alt="Lobster">
+          <p>Lobsters can live up to 100 years in the wild.</p>
+          <p>They have blue blood due to the presence of copper in their hemocyanin.</p>
+        </div>
+      );
     }
-  }
 
-  // Add comment
-  async function addComment(postId) {
-    const input = document.getElementById('comment-input-' + postId);
-    if (!input) return;
-    const text = input.value.trim();
-    if (!text) return;
-    if (!currentUser) {
-      alert('Signing in, please wait a second and try again.');
-      return;
+    function showBecky() {
+      render(
+        <div class="card">
+          <h2>Welcome to Becky’s Page</h2>
+          <img src="https://media.licdn.com/dms/image/v2/C4D03AQFDPmBdyw6vqg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1569969167554?e=1760572800&v=beta&t=T4FvFUygr5-b07ZqTrhXG4aA4PpXbWtRD7MLqsdSDLA" alt="Becky">
+          <p>Old. Likes Panera Bread</p>
+          <div id="stopwatch"></div>
+        </div>
+      );
+      startStopwatch();
     }
-    try {
-      await db.collection('softballPosts').doc(postId).collection('comments').add({
-        text,
-        uid: currentUser.uid,
-        created: firebase.firestore.FieldValue.serverTimestamp()
-      });
-      input.value = '';
-    } catch (err) {
-      console.error('addComment error', err);
-      alert('Error adding comment, see console.');
-    }
-  }
 
-  // Delete comment by id (only owner)
-  async function deleteComment(postId, commentId) {
-    if (!currentUser) { alert('Not signed in yet.'); return; }
-    try {
-      const ref = db.collection('softballPosts').doc(postId).collection('comments').doc(commentId);
-      const snap = await ref.get();
-      if (!snap.exists) return;
-      if (snap.data().uid !== currentUser.uid) { alert('You can only delete your own comments.'); return; }
-      await ref.delete();
-    } catch (err) {
-      console.error('deleteComment error', err);
-      alert('Error deleting comment, see console.');
-    }
-  }
+    function startStopwatch() {
+      const birthDate = new Date('1996-06-06T14:04:00');
+      setInterval(() => {
+        const now = new Date();
 
-  // Delete a post, with its comments, only owner
-  async function deletePost(postId) {
-    if (!currentUser) { alert('Not signed in yet.'); return; }
-    try {
-      const postRef = db.collection('softballPosts').doc(postId);
-      const snap = await postRef.get();
-      if (!snap.exists) return;
-      if (snap.data().uid !== currentUser.uid) { alert('You can only delete your own posts.'); return; }
+        let years = now.getFullYear() - birthDate.getFullYear();
+        let months = now.getMonth() - birthDate.getMonth();
+        let days = now.getDate() - birthDate.getDate();
+        let hours = now.getHours() - birthDate.getHours();
+        let minutes = now.getMinutes() - birthDate.getMinutes();
+        let seconds = now.getSeconds() - birthDate.getSeconds();
 
-      // delete comments first, then post in a batch
-      const commentsSnap = await postRef.collection('comments').get();
-      const batch = db.batch();
-      commentsSnap.forEach(doc => batch.delete(doc.ref));
-      batch.delete(postRef);
-      await batch.commit();
-    } catch (err) {
-      console.error('deletePost error', err);
-      alert('Error deleting post, see console.');
-    }
-  }
-
-  // Unsubscribe helpers
-  function clearCommentsUnsubscribes() {
-    Object.keys(unsubscribeComments).forEach(pid => {
-      if (typeof unsubscribeComments[pid] === 'function') unsubscribeComments[pid]();
-      delete unsubscribeComments[pid];
-    });
-  }
-
-  // Load posts and render, subscribe to comments subcollections
-  function loadPosts() {
-    // unsubscribe previous listeners to avoid duplicates
-    if (typeof unsubscribePosts === 'function') unsubscribePosts();
-    clearCommentsUnsubscribes();
-
-    const postsContainer = document.getElementById('blog-posts');
-    if (!postsContainer) return;
-
-    postsContainer.innerHTML = '<div style="color:#666">Loading posts...</div>';
-
-    unsubscribePosts = db.collection('softballPosts')
-      .orderBy('created', 'desc')
-      .onSnapshot(snapshot => {
-        // snapshot listener
-        if (!document.getElementById('blog-posts')) return;
-        const container = document.getElementById('blog-posts');
-        container.innerHTML = ''; // reset
-
-        if (snapshot.empty) {
-          container.innerHTML = '<div style="color:#666">No posts yet, be the first.</div>';
-          return;
+        if (seconds < 0) { seconds += 60; minutes--; }
+        if (minutes < 0) { minutes += 60; hours--; }
+        if (hours < 0) { hours += 24; days--; }
+        if (days < 0) {
+          const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+          days += prevMonth; months--;
         }
+        if (months < 0) { months += 12; years--; }
 
-        snapshot.forEach(doc => {
-          const post = doc.data();
-          const postId = doc.id;
-          const canDeletePost = currentUser && (post.uid === currentUser.uid);
-          // create DOM structure for the post
-          const postDiv = document.createElement('div');
-          postDiv.className = 'post';
-          postDiv.innerHTML = `
-            <div style="display:flex; justify-content:space-between; align-items:center; gap:12px;">
-              <strong style="font-size:1.05rem;">${escapeHTML(post.text)}</strong>
-              <div style="display:flex; gap:8px; align-items:center;">
-                ${canDeletePost ? `<button class="delete-btn delete-post" data-post-id="${postId}">Delete Post</button>` : ''}
-              </div>
-            </div>
-            <div style="margin-top:8px;">
-              <h4 style="margin:6px 0;">Comments</h4>
-              <div id="comments-${postId}">Loading comments...</div>
-              <div style="margin-top:8px;">
-                <input id="comment-input-${postId}" type="text" placeholder="Write a comment..." />
-                <div class="controls" style="margin-top:6px;">
-                  <button class="btn comment-btn" data-post-id="${postId}">Comment</button>
-                </div>
-              </div>
-            </div>
-          `;
-          container.appendChild(postDiv);
-
-          // subscribe to comments for this post
-          if (unsubscribeComments[postId]) {
-            // safe to unsubscribe then re-subscribe, but we already cleared above
-            unsubscribeComments[postId]();
-          }
-          unsubscribeComments[postId] = db.collection('softballPosts').doc(postId)
-            .collection('comments')
-            .orderBy('created', 'asc')
-            .onSnapshot(commentSnap => {
-              const commentsContainer = document.getElementById('comments-' + postId);
-              if (!commentsContainer) return;
-              if (commentSnap.empty) {
-                commentsContainer.innerHTML = '<div style="color:#666">No comments yet.</div>';
-                return;
-              }
-              commentsContainer.innerHTML = '';
-              commentSnap.forEach(cdoc => {
-                const c = cdoc.data();
-                const cid = cdoc.id;
-                const canDeleteComment = currentUser && (c.uid === currentUser.uid);
-                const commentEl = document.createElement('div');
-                commentEl.className = 'comment';
-                commentEl.innerHTML = `
-                  <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <div>${escapeHTML(c.text)}</div>
-                    <div>${ canDeleteComment ? `<button class="delete-btn delete-comment" data-post-id="${postId}" data-comment-id="${cid}">Delete</button>` : '' }</div>
-                  </div>
-                `;
-                commentsContainer.appendChild(commentEl);
-              });
-            }, err => {
-              console.error('comments onSnapshot error', err);
-            });
-        });
-      }, err => {
-        console.error('posts onSnapshot error', err);
-        const container = document.getElementById('blog-posts');
-        if (container) container.innerHTML = '<div style="color:crimson">Error loading posts, see console for details.</div>';
-      });
-  }
-
-  // event delegation on the main content area so we do not reattach listeners repeatedly
-  document.addEventListener('click', function(e) {
-    const el = e.target;
-    if (el.matches('.comment-btn')) {
-      const pid = el.dataset.postId;
-      addComment(pid);
-    } else if (el.matches('.delete-post')) {
-      const pid = el.dataset.postId;
-      if (confirm('Delete this post?')) deletePost(pid);
-    } else if (el.matches('.delete-comment')) {
-      const pid = el.dataset.postId;
-      const cid = el.dataset.commentId;
-      if (confirm('Delete this comment?')) deleteComment(pid, cid);
+        document.getElementById('stopwatch').innerText =
+          years + " years, " +
+          months + " months, " +
+          days + " days, " +
+          hours + " hours, " +
+          minutes + " minutes, " +
+          seconds + " seconds old.";
+      }, 1000);
     }
-  });
 
-  // initial page
-  showHome();
+    function showDino() {
+      render(
+        <div class="card">
+          <h2>Proof Dinosaurs Are Real</h2>
+          <img src="https://images.template.net/476822/Cartoon-Dinosaur-Clipart-edit-online.png" alt="Dinosaur">
+          <p>Dinosaurs may be extinct, but their relatives still roam the earth as birds today.</p>
+        </div>
+      );
+    }
 
-  // Expose a bit to console for manual debugging if needed
-  window._debug = {
-    auth, db, loadPosts, addPost, addComment, deletePost, deleteComment
-  };
+    function showJeff() {
+      render(
+        <div class="card">
+          <h2>Welcome to the Jeff Page</h2>
+          <img src="https://media.gettyimages.com/id/127930805/photo/sprint-employee-jeff-strohm-testifies-du.jpg?s=612x612&w=gi&k=20&c=ZJD-efiKAqdnHu-vg58si4HMkT1dRECLsiHJ2xyFwL4=">
+          <p>Jeff was a pivotal role in the conviction of Dr. Conrad Murray.</p>
+          <p>Smokes cigs.</p>
+        </div>
+      );
+    }
+
+    function showIsaac() {
+      render(
+        <div class="card">
+          <h2>Welcome to the Isaac Page</h2>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDSFmKUT8ONBlx7DAZKUtgdpZVIBbdzW46bQ&s" alt="Isaac">
+          <p>Isaac enjoys gambling.</p>
+          <p>Does not smoke cigs.</p>
+        </div>
+      );
+    }
   </script>
 </body>
 </html>
