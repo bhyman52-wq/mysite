@@ -300,55 +300,13 @@
             </div>
           </a>
 
-          <!-- Blog Section -->
+          <!-- Blog Placeholder -->
           <div class="card" style="flex: 1 1 100%;">
             <h2>Softball Blog</h2>
-            <div id="blog-posts"></div>
-            <h3>Add a Post</h3>
-            <textarea id="new-post" rows="3" style="width:100%;"></textarea><br>
-            <button onclick="addPost()">Post</button>
+            <p><em>Blog content will go here in the future...</em></p>
           </div>
         </div>
       `);
-      loadPosts();
-    }
-
-    let posts = JSON.parse(localStorage.getItem('softballPosts')) || [];
-
-    function loadPosts() {
-      const container = document.getElementById('blog-posts');
-      if (!container) return;
-      container.innerHTML = posts.map((post, index) => `
-        <div style="margin-bottom:20px; padding:15px; border:1px solid #ddd; border-radius:8px; background:#f9f9f9; text-align:left;">
-          <p>${post.text}</p>
-          <div style="margin-top:10px;">
-            <h4>Comments</h4>
-            <div id="comments-${index}">
-              ${(post.comments || []).map(c => `<p style="margin:4px 0;">- ${c}</p>`).join('')}
-            </div>
-            <input id="comment-input-${index}" placeholder="Write a comment" style="width:80%;">
-            <button onclick="addComment(${index})">Comment</button>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function addPost() {
-      const textarea = document.getElementById('new-post');
-      if (textarea.value.trim() === '') return;
-      posts.unshift({ text: textarea.value, comments: [] });
-      localStorage.setItem('softballPosts', JSON.stringify(posts));
-      textarea.value = '';
-      loadPosts();
-    }
-
-    function addComment(index) {
-      const input = document.getElementById('comment-input-' + index);
-      if (input.value.trim() === '') return;
-      posts[index].comments.push(input.value);
-      localStorage.setItem('softballPosts', JSON.stringify(posts));
-      input.value = '';
-      loadPosts();
     }
   </script>
 </body>
